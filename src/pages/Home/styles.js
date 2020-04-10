@@ -7,6 +7,7 @@ export const Container = styled.View`
   background: #141419;
   padding: 10px 10px;
 `;
+
 export const List = styled.FlatList`
   height: 400px;
 `;
