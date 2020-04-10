@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    es6: true
+    'es6': true
   },
   extends: [
     'airbnb',
@@ -34,6 +34,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/state-in-constructor': 'off',
     'react/static-property-placement': 'off',
-    'react/require-default-props': 'off'
+    'react/require-default-props': 'off',
+    'react/no-unused-prop-types': 0,
   }
 };
