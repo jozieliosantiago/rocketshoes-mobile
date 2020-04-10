@@ -15,9 +15,9 @@ export const Item = styled.View`
   background: #fff;
   border-radius: 5px;
   margin-right: 15px;
-  padding: 10px;
+  padding: 15px;
   width: 250px;
-  height: 440px;
+  height: 450px;
 `;
 
 export const Image = styled.Image`
