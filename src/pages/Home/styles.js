@@ -34,7 +34,7 @@ export const Description = styled.Text`
 export const PriceInfo = styled.Text`
   font-size: 24px;
   font-weight: bold;
-  margin: 15px 0;
+  margin-top: auto;
 `;
 
 export const Button = styled(RectButton)`
@@ -43,6 +43,7 @@ export const Button = styled(RectButton)`
   height: 50px;
   border-radius: 4px;
   align-items: center;
+  margin-top: auto;
 `;
 
 export const TextButton = styled.Text`
