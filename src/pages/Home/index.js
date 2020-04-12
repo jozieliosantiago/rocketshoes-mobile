@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../services/api';
+import { formatPrice } from '../../util/format';
 
 import {
   Container,
@@ -23,7 +24,12 @@ export default class Home extends Component {
   async componentDidMount() {
     const response = await api.get('/products');
 
-    this.setState({ products: response.data });
+    const data = response.data.map((product) => ({
+      ...product,
+      priceFormatted: formatPrice(product.price),
+    }));
+
+    this.setState({ products: data });
   }
 
   render() {
@@ -43,7 +49,7 @@ export default class Home extends Component {
                 }}
               />
               <Description>{item.title}</Description>
-              <PriceInfo>{item.price}</PriceInfo>
+              <PriceInfo>{item.priceFormatted}</PriceInfo>
               <Button>
                 <CartIcon>
                   <Icon name="add-shopping-cart" color="#fff" size={20} />
