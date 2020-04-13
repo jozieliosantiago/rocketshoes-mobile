@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { formatPrice } from '../../util/format';
 
 import * as CartActions from '../../store/modules/cart/actions';
 
@@ -28,7 +29,7 @@ import {
   List,
 } from './styles';
 
-function Cart({ cart, removeFromCart, updateAmount }) {
+function Cart({ cart, total, removeFromCart, updateAmount }) {
   function increment(product) {
     updateAmount(product.id, product.amount + 1);
   }
@@ -42,7 +43,7 @@ function Cart({ cart, removeFromCart, updateAmount }) {
       <>
         <Total>
           <Title>TOTAL</Title>
-          <Value>R$ 539,70</Value>
+          <Value>{total}</Value>
         </Total>
 
         <SubmitButton>
@@ -91,7 +92,7 @@ function Cart({ cart, removeFromCart, updateAmount }) {
                     onPress={() => increment(item)}
                   />
                 </Count>
-                <Subtotal>R$ 539,70</Subtotal>
+                <Subtotal>{item.subtotal}</Subtotal>
               </Amount>
             </Item>
           )}
@@ -106,10 +107,19 @@ Cart.propTypes = {
   cart: PropTypes.array.isRequired,
   removeFromCart: PropTypes.func.isRequired,
   updateAmount: PropTypes.func.isRequired,
+  total: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
-  cart: state.cart,
+  cart: state.cart.map((product) => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0)
+  ),
 });
 
 const mapDispatchToProps = (dispatch) =>
