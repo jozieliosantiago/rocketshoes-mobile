@@ -25,7 +25,7 @@ import {
   List,
 } from './styles';
 
-function Cart({ cart }) {
+function Cart({ cart, dispatch }) {
   const footer = () => {
     return (
       <>
@@ -59,7 +59,11 @@ function Cart({ cart }) {
                   <Description>{item.title}</Description>
                   <Price>{item.priceFormatted}</Price>
                 </Info>
-                <RemoveButton>
+                <RemoveButton
+                  onPress={() =>
+                    dispatch({ type: 'REMOVE_FROM_CART', id: item.id })
+                  }
+                >
                   <Icon name="delete-forever" color="#7159c1" size={25} />
                 </RemoveButton>
               </Header>
