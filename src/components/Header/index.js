@@ -16,7 +16,7 @@ export default function Header({ navigation }) {
         onPress={() => navigation.navigate('Cart')}
         name="shopping-basket"
         color="#fff"
-        size={20}
+        size={25}
       />
     </HeaderContainer>
   );
