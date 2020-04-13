@@ -71,7 +71,7 @@ function Cart({ cart }) {
                     size={20}
                     color="#7159c1"
                   />
-                  <Input value="0" />
+                  <Input value={String(item.amount)} />
                   <Icon name="add-circle-outline" size={20} color="#7159c1" />
                 </Count>
                 <Subtotal>R$ 539,70</Subtotal>
