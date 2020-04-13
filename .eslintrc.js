@@ -36,5 +36,6 @@ module.exports = {
     'react/static-property-placement': 'off',
     'react/require-default-props': 'off',
     'react/no-unused-prop-types': 0,
+    'react/forbid-prop-types': 0,
   }
 };

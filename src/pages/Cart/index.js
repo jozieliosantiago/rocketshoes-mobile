@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -23,9 +25,7 @@ import {
   List,
 } from './styles';
 
-export default function Cart() {
-  const products = ['product1', 'product2'];
-
+function Cart({ cart }) {
   const footer = () => {
     return (
       <>
@@ -45,22 +45,19 @@ export default function Cart() {
     <Container>
       <CartContent>
         <List
-          data={products}
-          keyExtractor={(product) => product}
-          renderItem={({ product }) => (
-            <Item key={product}>
+          data={cart}
+          keyExtractor={(product) => String(product.id)}
+          renderItem={({ item }) => (
+            <Item>
               <Header>
                 <Image
                   source={{
-                    uri:
-                      'https://static.netshoes.com.br/produtos/tenis-adidas-duramo-lite-2-0-masculino/28/COL-3586-128/COL-3586-128_detalhe1.jpg?ts=1573040493?ims=280x280',
+                    uri: item.image,
                   }}
                 />
                 <Info>
-                  <Description>
-                    Tênis Adidas Duramo Lite 2 0 Masculino - Cinza
-                  </Description>
-                  <Price>R$ 179,90</Price>
+                  <Description>{item.title}</Description>
+                  <Price>{item.priceFormatted}</Price>
                 </Info>
                 <RemoveButton>
                   <Icon name="delete-forever" color="#7159c1" size={25} />
@@ -87,3 +84,13 @@ export default function Cart() {
     </Container>
   );
 }
+
+Cart.propTypes = {
+  cart: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+export default connect(mapStateToProps)(Cart);
