@@ -28,7 +28,15 @@ import {
   List,
 } from './styles';
 
-function Cart({ cart, removeFromCart }) {
+function Cart({ cart, removeFromCart, updateAmount }) {
+  function increment(product) {
+    updateAmount(product.id, product.amount + 1);
+  }
+
+  function decrement(product) {
+    updateAmount(product.id, product.amount - 1);
+  }
+
   const footer = () => {
     return (
       <>
@@ -73,9 +81,15 @@ function Cart({ cart, removeFromCart }) {
                     name="remove-circle-outline"
                     size={20}
                     color="#7159c1"
+                    onPress={() => decrement(item)}
                   />
                   <Input value={String(item.amount)} />
-                  <Icon name="add-circle-outline" size={20} color="#7159c1" />
+                  <Icon
+                    name="add-circle-outline"
+                    size={20}
+                    color="#7159c1"
+                    onPress={() => increment(item)}
+                  />
                 </Count>
                 <Subtotal>R$ 539,70</Subtotal>
               </Amount>
@@ -91,6 +105,7 @@ function Cart({ cart, removeFromCart }) {
 Cart.propTypes = {
   cart: PropTypes.array.isRequired,
   removeFromCart: PropTypes.func.isRequired,
+  updateAmount: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
