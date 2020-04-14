@@ -68,3 +68,9 @@ export const Count = styled.Text`
   margin-left: 10px;
   color: #fff;
 `;
+
+export const Loader = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;

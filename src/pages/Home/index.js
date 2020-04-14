@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -19,6 +20,7 @@ import {
   TextButton,
   CartIcon,
   Count,
+  Loader,
 } from './styles';
 
 class Home extends Component {
@@ -33,12 +35,10 @@ class Home extends Component {
 
   async componentDidMount() {
     const response = await api.get('/products');
-
     const data = response.data.map((product) => ({
       ...product,
       priceFormatted: formatPrice(product.price),
     }));
-
     this.setState({ products: data });
   }
 
@@ -54,29 +54,35 @@ class Home extends Component {
 
     return (
       <Container>
-        <List
-          horizontal
-          data={products}
-          keyExtractor={(product) => String(product.id)}
-          renderItem={({ item }) => (
-            <Item>
-              <Image
-                source={{
-                  uri: item.image,
-                }}
-              />
-              <Description>{item.title}</Description>
-              <PriceInfo>{item.priceFormatted}</PriceInfo>
-              <Button onPress={() => this.handleAddProduct(item.id)}>
-                <CartIcon>
-                  <Icon name="add-shopping-cart" color="#fff" size={20} />
-                  <Count>{amount[item.id] || 0}</Count>
-                </CartIcon>
-                <TextButton>ADICIONAR</TextButton>
-              </Button>
-            </Item>
-          )}
-        />
+        {!products.length ? (
+          <Loader>
+            <ActivityIndicator size="large" color="#7159c1" />
+          </Loader>
+        ) : (
+          <List
+            horizontal
+            data={products}
+            keyExtractor={(product) => String(product.id)}
+            renderItem={({ item }) => (
+              <Item>
+                <Image
+                  source={{
+                    uri: item.image,
+                  }}
+                />
+                <Description>{item.title}</Description>
+                <PriceInfo>{item.priceFormatted}</PriceInfo>
+                <Button onPress={() => this.handleAddProduct(item.id)}>
+                  <CartIcon>
+                    <Icon name="add-shopping-cart" color="#fff" size={20} />
+                    <Count>{amount[item.id] || 0}</Count>
+                  </CartIcon>
+                  <TextButton>ADICIONAR</TextButton>
+                </Button>
+              </Item>
+            )}
+          />
+        )}
       </Container>
     );
   }
