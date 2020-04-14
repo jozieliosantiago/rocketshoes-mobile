@@ -23,7 +23,7 @@ import {
 
 class Home extends Component {
   static propTypes = {
-    addToCart: PropTypes.func,
+    addToCartRequest: PropTypes.func,
     amount: PropTypes.object,
   };
 
@@ -42,10 +42,10 @@ class Home extends Component {
     this.setState({ products: data });
   }
 
-  handleAddProduct = (product) => {
-    const { addToCart } = this.props;
+  handleAddProduct = (id) => {
+    const { addToCartRequest } = this.props;
 
-    addToCart(product);
+    addToCartRequest(id);
   };
 
   render() {
@@ -67,7 +67,7 @@ class Home extends Component {
               />
               <Description>{item.title}</Description>
               <PriceInfo>{item.priceFormatted}</PriceInfo>
-              <Button onPress={() => this.handleAddProduct(item)}>
+              <Button onPress={() => this.handleAddProduct(item.id)}>
                 <CartIcon>
                   <Icon name="add-shopping-cart" color="#fff" size={20} />
                   <Count>{amount[item.id] || 0}</Count>
