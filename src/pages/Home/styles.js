@@ -8,7 +8,9 @@ export const Container = styled.View`
   padding: 10px 10px;
 `;
 
-export const List = styled.FlatList`
+export const List = styled.FlatList.attrs({
+  showsHorizontalScrollIndicator: false,
+})`
   height: 400px;
 `;
 
