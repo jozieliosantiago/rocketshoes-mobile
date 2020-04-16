@@ -14,18 +14,18 @@ A Rocketshoes é uma aplicação fictícia de venda de sapatos. A aplicação fo
 
 ## Instalação
 
-Como a aplicação foi contruída para fins didáticos o passo a passo abaixo provê a instalação da aplicação em modo de desenvolvimento.
+Como a aplicação foi construída para fins didáticos o passo a passo abaixo provê a instalação da aplicação em modo de desenvolvimento.
 
 ### Servidor
 
 Para executar o projeto é necessário ter o [docker](https://www.docker.com/) instalado. O docker será usado para a execução do servidor da aplicação. O servidor trata-se de um container [node](https://hub.docker.com/_/node/) executando a biblioteca [json-server](https://github.com/typicode/json-server).
 
-Após clonar o projeto, dentro da pasta **docker**, execute o seguinte comando
+Após clonar o projeto, dentro da pasta **docker**, execute o seguinte comando:
 
 ```bash
 docker build -t app-server . && docker run --name rocketshoes-server -p 3333:3333 -it -d app-server
 ```
-Um container será criado com o nome rocketshoes-server e pode ser visto em execusão através do comando
+Um container será criado com o nome rocketshoes-server e pode ser visto em execução através do comando:
 ```bash
 docker ps
 ```
@@ -39,7 +39,7 @@ Dentro da pasta raíz do projeto execute o comando
 ```bash
 yarn
 ```
-Na pasta raíz do projeto existe um arquivo *.env* com a variável API_URL. Substitua o ip de exemplo do arquivo pelo ip da máquina onde está rodando o container docker criado
+Na pasta raíz do projeto existe um arquivo *.env* com a variável API_URL. Substitua o ip de exemplo do arquivo pelo ip da máquina onde está rodando o container docker criado.
 
 <img src=".github/change-ip.gif" width="500px" style="margin: 2px">
 
