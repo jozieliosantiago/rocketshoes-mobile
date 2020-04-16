@@ -32,7 +32,7 @@ docker ps
 ### App
 <!-- docker stop rocketshoes-server && docker rm rocketshoes-server && docker rmi app-server -->
 
-O passo a passo abaixo mostra como executar a aplicação diretamente no dispositivo móvel, o que não descarta o uso de emuladores. Caso opte pelo uso de emuladores basta seguir as etapas trocando o uso do dispositivo, conectado via USB, pelo emulador escolhido.
+O passo a passo abaixo mostra como executar a aplicação diretamente no dispositivo móvel, o que não descarta o uso de emuladores. Caso opte pelo uso de emuladores basta seguir as etapas trocando o uso do dispositivo, conectado via USB, pelo emulador escolhido. Para que o dispositivo enxergue o server instalado via docker, no passo anterior, é necessário que o ambos estejam na mesma rede.
 
 Dentro da pasta raíz do projeto execute o comando
 
